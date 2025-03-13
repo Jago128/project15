@@ -25,8 +25,8 @@ public class WindowShowAsignaturas extends JDialog implements ActionListener {
 		comboBox.setBounds(75, 11, 159, 22);
 		getContentPane().add(comboBox);
 
-		btnShow = new JButton("Mostrar alumnos");
-		btnShow.setBounds(105, 59, 129, 23);
+		btnShow = new JButton("Mostrar asignaturas");
+		btnShow.setBounds(86, 58, 129, 23);
 		getContentPane().add(btnShow);
 		btnShow.addActionListener(this);
 

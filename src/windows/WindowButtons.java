@@ -62,7 +62,8 @@ public class WindowButtons extends JFrame implements ActionListener {
 			WindowShowAsignaturas dialog = new WindowShowAsignaturas(this,w);
 			dialog.setVisible(true);
 		} else if (e.getSource()==btnShowAsignaturasDNI) {
-
+			WindowShowAsignaturasDNI dialog = new WindowShowAsignaturasDNI(this,w);
+			dialog.setVisible(true);
 		} else if (e.getSource()==btnModify) {
 
 		} else if (e.getSource()==btnDelete) {
