@@ -21,12 +21,12 @@ public class WindowController {
 		return dao.showAlumnos();
 	}
 	
-	public Map<Integer, Asignatura> showAsignaturasDNI() {
-		return dao.showAsignaturasDNI();
+	public Map<Integer, Asignatura> showAsignaturas() {
+		return dao.showAsignaturas();
 	}
-	
-	public boolean insert(Asignatura a) {
-		return dao.insert(a);
+
+	public Map<Integer, Asignatura> showAsignaturasDNI(String dni) {
+		return dao.showAsignaturasDNI(dni);
 	}
 	
 	public boolean update(Asignatura a) {

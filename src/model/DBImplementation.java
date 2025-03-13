@@ -87,7 +87,7 @@ public class DBImplementation implements Alumno_AsignaturaDAO {
 	}
 	
 	@Override
-	public Map<Integer, Asignatura> showAsignaturasDNI() {
+	public Map<Integer, Asignatura> showAsignaturas() {
 		Map<Integer, Asignatura> alumnos=new TreeMap<>();
 		Asignatura a;
 		ResultSet rs=null;
@@ -113,27 +113,30 @@ public class DBImplementation implements Alumno_AsignaturaDAO {
 	}
 
 	@Override
-	public boolean insert(Asignatura a) {	
-		boolean check=false;
-
+	public Map<Integer, Asignatura> showAsignaturasDNI(String dni) {
+		Map<Integer, Asignatura> alumnos=new TreeMap<>();
+		Asignatura a;
+		ResultSet rs=null;
 		this.openConnection();
-		if (!comprobarAsignatura(a)) {
-			try {
-				stmt=con.prepareStatement(INSERTASIGNATURA);
-				stmt.setInt(1, a.getId());
-				stmt.setString(2, a.getNom());
-				stmt.setInt(3, a.getCreditos());
-				stmt.setString(4, a.getDni());
-				if (stmt.executeUpdate()>0) {
-					check=true;
-				}
-				stmt.close();
-				con.close();
-			} catch (SQLException e) {
-				System.out.println("Error al verificar credenciales: " + e.getMessage());
+		try {
+			stmt=con.prepareStatement(SHOWASIGNATURAS);
+			stmt.setString(1, dni);
+			rs=stmt.executeQuery();
+			while (rs.next()) {
+				a=new Asignatura();
+				a.setId(rs.getInt("id"));
+				a.setNom("nom");
+				a.setCreditos(rs.getInt("creditos"));
+				a.setDni("dni");
+				alumnos.put(a.getId(), a);
 			}
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return check;
+		return alumnos;
 	}
 
 	@Override
